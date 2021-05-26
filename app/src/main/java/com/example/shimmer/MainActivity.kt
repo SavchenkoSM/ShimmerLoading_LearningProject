@@ -4,16 +4,24 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.LinearLayout
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager.widget.ViewPager
+import com.example.shimmer.adapters.RVAdapter
+import com.example.shimmer.adapters.VPAdapter
+import com.example.shimmer.models.Model
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        private const val delayMillis = 5000L;
+        private const val delayMillis = 5000L
     }
+
+    private lateinit var actionBar: ActionBar
+    private lateinit var viewPagerAdapter: VPAdapter
 
     private val models: ArrayList<Model> = getTestCollection()
     private val adapter: RVAdapter = RVAdapter(models, this)
@@ -22,14 +30,38 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        actionBar = this.supportActionBar!!
+        loadCardsPV()
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+                // Change ActionBar title
+                val title = models[position].title
+                actionBar.title = title
+            }
+
+            override fun onPageSelected(position: Int) {}
+            override fun onPageScrollStateChanged(state: Int) {}
+        })
+
         recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayout.VERTICAL))
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.hasFixedSize()
         recyclerView.adapter = adapter
-        dataLoad()
+        loadDataRV()
     }
 
-    private fun dataLoad() {
+    private fun loadCardsPV() {
+        viewPagerAdapter = VPAdapter(this, models)
+        viewPager.adapter = viewPagerAdapter
+        viewPager.setPadding(100, 0, 100, 0)
+    }
+
+    private fun loadDataRV() {
         Looper.myLooper()?.let {
             Handler(it).postDelayed({
                 models
@@ -40,71 +72,45 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getTestCollection(): ArrayList<Model> {
-        val models: java.util.ArrayList<Model> = java.util.ArrayList()
+        val models: ArrayList<Model> = ArrayList()
         models.add(
             Model(
                 "Cat name - Picky",
-                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white."
+                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white.",
+                "May 22, 2021",
+                R.drawable.cat1
             )
         )
         models.add(
             Model(
-                "Cat name - Picky",
-                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white."
+                "Cat name - Lucky",
+                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white.",
+                "May 23, 2021",
+                R.drawable.cat2
             )
         )
         models.add(
             Model(
-                "Cat name - Picky",
-                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white."
+                "Cat name - Garry",
+                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white.",
+                "May 24, 2021",
+                R.drawable.cat3
             )
         )
         models.add(
             Model(
-                "Cat name - Picky",
-                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white."
+                "Cat name - Zuzya",
+                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white.",
+                "May 25, 2021",
+                R.drawable.cat4
             )
         )
         models.add(
             Model(
-                "Cat name - Picky",
-                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white."
-            )
-        )
-        models.add(
-            Model(
-                "Cat name - Picky",
-                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white."
-            )
-        )
-        models.add(
-            Model(
-                "Cat name - Picky",
-                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white."
-            )
-        )
-        models.add(
-            Model(
-                "Cat name - Picky",
-                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white."
-            )
-        )
-        models.add(
-            Model(
-                "Cat name - Picky",
-                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white."
-            )
-        )
-        models.add(
-            Model(
-                "Cat name - Picky",
-                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white."
-            )
-        )
-        models.add(
-            Model(
-                "Cat name - Picky",
-                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white."
+                "Cat name - Maurizio",
+                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white.",
+                "May 26, 2021",
+                R.drawable.cat5
             )
         )
         return models

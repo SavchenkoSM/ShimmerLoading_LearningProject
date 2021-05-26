@@ -1,4 +1,4 @@
-package com.example.shimmer
+package com.example.shimmer.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.shimmer.RVAdapter.*
+import com.example.shimmer.R
+import com.example.shimmer.adapters.RVAdapter.*
+import com.example.shimmer.models.Model
+import kotlinx.android.synthetic.main.card_item.view.*
 import kotlinx.android.synthetic.main.item_layout.view.*
 import java.util.*
 
@@ -47,12 +50,7 @@ class RVAdapter(private val models: ArrayList<Model>, private val context: Conte
         holder.itemView.descTextView.text = models[holder.adapterPosition].desc
 
         holder.itemView.imageView.background = null
-        holder.itemView.imageView.setImageDrawable(
-            ContextCompat.getDrawable(
-                context,
-                R.drawable.cat_icon
-            )
-        )
+        holder.itemView.imageView.setImageResource(models[holder.adapterPosition].image)
     }
 
     override fun getItemCount(): Int {
