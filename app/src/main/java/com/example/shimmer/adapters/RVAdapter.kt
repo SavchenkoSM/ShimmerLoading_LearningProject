@@ -35,7 +35,16 @@ class RVAdapter(private val models: ArrayList<Model>, private val context: Conte
             showUiWithData(holder)
 
         holder.itemView.setOnClickListener {
-            Toast.makeText(context, "Click", Toast.LENGTH_SHORT).show()
+            if (!isShimmer)
+                Toast.makeText(
+                    context,
+                    "Your choice is ${holder.itemView.titleTextView.text}!",
+                    Toast.LENGTH_SHORT).show()
+            else
+                Toast.makeText(
+                    context,
+                    "Loading, please, wait a few seconds...",
+                    Toast.LENGTH_SHORT).show()
         }
     }
 

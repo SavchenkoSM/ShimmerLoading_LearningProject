@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             override fun onPageScrollStateChanged(state: Int) {}
         })
 
-        recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayout.VERTICAL))
+        //recyclerView.addItemDecoration(DividerItemDecoration(this, LinearLayout.VERTICAL))
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.hasFixedSize()
         recyclerView.adapter = adapter
@@ -75,40 +75,40 @@ class MainActivity : AppCompatActivity() {
         val models: ArrayList<Model> = ArrayList()
         models.add(
             Model(
-                "Cat name - Picky",
-                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white.",
+                "Picky",
+                "She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white.",
                 "May 22, 2021",
                 R.drawable.cat1
             )
         )
         models.add(
             Model(
-                "Cat name - Lucky",
-                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white.",
+                "Lucky",
+                "She is beautiful and fluffy cat with a strong character.",
                 "May 23, 2021",
                 R.drawable.cat2
             )
         )
         models.add(
             Model(
-                "Cat name - Garry",
-                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white.",
+                "Garry",
+                "He is a young, one year old. He is multicolor cat.",
                 "May 24, 2021",
                 R.drawable.cat3
             )
         )
         models.add(
             Model(
-                "Cat name - Zuzya",
-                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white.",
+                "Zuzya",
+                "She is a young and interesting cat.",
                 "May 25, 2021",
                 R.drawable.cat4
             )
         )
         models.add(
             Model(
-                "Cat name - Maurizio",
-                "Cat description - She is quite old for a cat. She is eleven years old. Her back is black and her belly and chest are white.",
+                "Maurizio",
+                "The best cat ever!!!",
                 "May 26, 2021",
                 R.drawable.cat5
             )

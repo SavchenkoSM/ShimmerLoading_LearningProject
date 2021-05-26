@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="colorShimmer">#E4E2E2</color>
+    <color name="colorViewPagerBackGround">#BAB5B5</color>
     <color name="colorBackground">#FFFFFFFF</color>
 </resources>
